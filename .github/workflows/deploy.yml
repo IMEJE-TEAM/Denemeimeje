@@ -30,22 +30,21 @@ jobs:
 
       - name: Decompress Unity WebGL Brotli files
         run: |
-          cd "İmeje_Web_Simulasyon/Build"
-          for f in *.br; do
+          find . -name "*.br" -type f | while read f; do
             echo "Decompressing: $f"
             brotli --decompress "$f" --output "${f%.br}"
           done
-          ls -lh
 
       - name: Update Unity index.html (remove .br extensions)
         run: |
-          sed -i \
-            -e 's/İmeje_Web_Simulasyon\.data\.br/İmeje_Web_Simulasyon.data/g' \
-            -e 's/İmeje_Web_Simulasyon\.framework\.js\.br/İmeje_Web_Simulasyon.framework.js/g' \
-            -e 's/İmeje_Web_Simulasyon\.wasm\.br/İmeje_Web_Simulasyon.wasm/g' \
-            "İmeje_Web_Simulasyon/index.html"
-          echo "Updated index.html:"
-          grep -E "dataUrl|frameworkUrl|codeUrl" "İmeje_Web_Simulasyon/index.html"
+          find . -name "index.html" -type f | while read f; do
+            sed -i \
+              -e 's/\.data\.br/.data/g' \
+              -e 's/\.framework\.js\.br/.framework.js/g' \
+              -e 's/\.wasm\.br/.wasm/g' \
+              "$f" || true
+            echo "Updated $f"
+          done
 
       - name: Add .nojekyll
         run: touch .nojekyll
