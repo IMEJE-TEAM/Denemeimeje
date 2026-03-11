@@ -39,20 +39,18 @@
     <div class="satellite-dot"></div>
   </div>
 
-  <!-- TAKIM LOGOSU — Hero Üst Merkez -->
+  <!-- İMEJE TAKIM LOGOSU -->
   <div class="team-logo-hero">
-    <div class="team-logo-ring">
-      <div class="team-logo-inner">
-        <!-- 
-          Logonuzu bu klasöre koyun: logo.png
-          Dosya adını değiştirdiyseniz src'yi güncelleyin 
-        -->
-        <img src="logo.png" alt="Takım Logosu" />
+    <div class="team-logo-badge">
+      <div class="team-logo-glow-ring"></div>
+      <div class="team-logo-glow-ring ring2"></div>
+      <div class="team-logo-img-wrap">
+        <img src="logo.png" alt="İMEJE Takım Logosu" />
       </div>
     </div>
-    <div class="team-logo-label">TAKIM ADINIZ</div>
+    <div class="team-logo-name">İMEJE</div>
+    <div class="team-logo-sub">TUA HACKATHON 2025 · UYDU TAKIMI</div>
   </div>
-  <!-- ──────────────────────────────── -->
 
   <div class="hero-eyebrow">▸ TUA HACKATHON 2025 · UYDU YARIŞMASI</div>
 
@@ -186,7 +184,16 @@
   <h2 class="section-title reveal">Unity <span class="highlight">Simülasyonu</span></h2>
   <p class="section-desc reveal">3D uydu yörüngesi ve yangın tespiti simülasyonu. Gerçek zamanlı veri akışı ile desteklenmektedir.</p>
 
-  <div class="sim-wrapper reveal">
+  <!-- BAŞLAT BUTONU -->
+  <div class="sim-start-row reveal">
+    <button id="simulasyonBaslatBtn" class="btn-sim-start">
+      <span class="btn-sim-icon">▶</span>
+      UYDU SİMÜLASYONUNU BAŞLAT
+    </button>
+    <p class="sim-start-hint">Unity WebGL yüklenir — tarayıcınızda çalışır, kurulum gerekmez.</p>
+  </div>
+
+  <div class="sim-wrapper reveal" id="simWrapper" style="display:none;">
     <!-- Top Bar -->
     <div class="sim-topbar">
       <div class="sim-dots">
@@ -201,22 +208,17 @@
     </div>
 
     <!-- Simulation Frame -->
-    <div class="sim-frame">
-      <!--
-        ╔══════════════════════════════════════════════════╗
-        ║   UNITY WEBGL ENTEGRASYONU                       ║
-        ║   1) Unity projenizi WebGL olarak build edin     ║
-        ║   2) Build klasörünü bu projeye kopyalayın       ║
-        ║   3) Aşağıdaki placeholder div'ini silin         ║
-        ║   4) iframe'i uncomment edin ve src'yi güncelleyin ║
-        ╚══════════════════════════════════════════════════╝
-      -->
+    <div class="sim-frame" id="simFrame">
 
-      <!-- UNITY IFRAME (build hazır olduğunda aktif edin) -->
-      <!-- <iframe src="./unity-build/index.html" allowfullscreen></iframe> -->
+      <!-- YÜKLENİYOR EKRANİ (buton tıklandığında gösterilir, iframe yüklenince kaybolur) -->
+      <div class="sim-loading" id="simLoading" style="display:none;">
+        <div class="sim-loading-spinner"></div>
+        <div class="sim-loading-text">SİMÜLASYON YÜKLENİYOR</div>
+        <div class="sim-loading-sub">Unity WebGL başlatılıyor...</div>
+      </div>
 
-      <!-- PLACEHOLDER (Unity build eklendiğinde bu div'i silin) -->
-      <div class="sim-placeholder">
+      <!-- PLACEHOLDER (iframe yüklenince otomatik gizlenir) -->
+      <div class="sim-placeholder" id="simPlaceholder">
         <div class="fake-earth">
           <div class="hotspot hs1"></div>
           <div class="hotspot hs2"></div>
@@ -230,8 +232,8 @@
             <div class="unity-hint-icon">🎮</div>
             <div class="unity-hint-title">UNITY WEBGL BUILD</div>
             <div class="unity-hint-desc">
-              Unity projenizi buraya entegre edin.<br/>
-              Build → WebGL → iframe src güncelleyin.
+              Simülasyonu başlatmak için yukarıdaki butona basın.<br/>
+              Unity WebGL tarayıcınızda doğrudan çalışır.
             </div>
           </div>
         </div>
@@ -245,8 +247,19 @@
             Uydu Yörüngesi
           </div>
         </div>
-        <div class="unity-placeholder-text">// PLACEHOLDER — UNITY BUILD BEKLENIYOR</div>
+        <div class="unity-placeholder-text">// SİMÜLASYON BEKLİYOR — BAŞLAT BUTONUNA BAS</div>
       </div>
+
+      <!--
+        ═══════════════════════════════════════════════════════
+        UNITY IFRAME — JavaScript tarafından otomatik eklenir.
+        Sadece UNITY_SIM_PATH değişkenini main.js içinde güncelle:
+
+          const UNITY_SIM_PATH = './simulasyon/index.html';
+                                   ↑
+                          GitHub'a yüklediğin klasör yolu
+        ═══════════════════════════════════════════════════════
+      -->
     </div>
 
     <!-- Telemetry Bar -->
@@ -268,7 +281,7 @@
         <span class="tele-val warn" id="t-con">AKTİF</span>
       </div>
     </div>
-  </div>
+  </div><!-- /sim-wrapper -->
 </section>
 
 <!-- ─── ÖZELLİKLER ─── -->
