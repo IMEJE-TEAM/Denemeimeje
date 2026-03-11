@@ -1,0 +1,121 @@
+﻿{
+    "total_count":  1,
+    "jobs":  [
+                 {
+                     "id":  66684759787,
+                     "run_id":  22970263593,
+                     "workflow_name":  "Deploy to GitHub Pages",
+                     "head_branch":  "main",
+                     "run_url":  "https://api.github.com/repos/IMEJE-TEAM/Denemeimeje/actions/runs/22970263593",
+                     "run_attempt":  1,
+                     "node_id":  "CR_kwDORkej6c8AAAAPhriu6w",
+                     "head_sha":  "b19f1ccc1c6b6663baab8fad441510f218c3021d",
+                     "url":  "https://api.github.com/repos/IMEJE-TEAM/Denemeimeje/actions/jobs/66684759787",
+                     "html_url":  "https://github.com/IMEJE-TEAM/Denemeimeje/actions/runs/22970263593/job/66684759787",
+                     "status":  "completed",
+                     "conclusion":  "failure",
+                     "created_at":  "2026-03-11T19:19:24Z",
+                     "started_at":  "2026-03-11T19:19:28Z",
+                     "completed_at":  "2026-03-11T19:19:40Z",
+                     "name":  "deploy",
+                     "steps":  [
+                                   {
+                                       "name":  "Set up job",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  1,
+                                       "started_at":  "2026-03-11T19:19:29Z",
+                                       "completed_at":  "2026-03-11T19:19:31Z"
+                                   },
+                                   {
+                                       "name":  "Checkout",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  2,
+                                       "started_at":  "2026-03-11T19:19:31Z",
+                                       "completed_at":  "2026-03-11T19:19:32Z"
+                                   },
+                                   {
+                                       "name":  "Install brotli",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  3,
+                                       "started_at":  "2026-03-11T19:19:32Z",
+                                       "completed_at":  "2026-03-11T19:19:39Z"
+                                   },
+                                   {
+                                       "name":  "Decompress Unity WebGL Brotli files",
+                                       "status":  "completed",
+                                       "conclusion":  "failure",
+                                       "number":  4,
+                                       "started_at":  "2026-03-11T19:19:39Z",
+                                       "completed_at":  "2026-03-11T19:19:39Z"
+                                   },
+                                   {
+                                       "name":  "Update Unity index.html (remove .br extensions)",
+                                       "status":  "completed",
+                                       "conclusion":  "skipped",
+                                       "number":  5,
+                                       "started_at":  "2026-03-11T19:19:39Z",
+                                       "completed_at":  "2026-03-11T19:19:39Z"
+                                   },
+                                   {
+                                       "name":  "Add .nojekyll",
+                                       "status":  "completed",
+                                       "conclusion":  "skipped",
+                                       "number":  6,
+                                       "started_at":  "2026-03-11T19:19:39Z",
+                                       "completed_at":  "2026-03-11T19:19:39Z"
+                                   },
+                                   {
+                                       "name":  "Setup Pages",
+                                       "status":  "completed",
+                                       "conclusion":  "skipped",
+                                       "number":  7,
+                                       "started_at":  "2026-03-11T19:19:39Z",
+                                       "completed_at":  "2026-03-11T19:19:39Z"
+                                   },
+                                   {
+                                       "name":  "Upload artifact",
+                                       "status":  "completed",
+                                       "conclusion":  "skipped",
+                                       "number":  8,
+                                       "started_at":  "2026-03-11T19:19:39Z",
+                                       "completed_at":  "2026-03-11T19:19:39Z"
+                                   },
+                                   {
+                                       "name":  "Deploy to GitHub Pages",
+                                       "status":  "completed",
+                                       "conclusion":  "skipped",
+                                       "number":  9,
+                                       "started_at":  "2026-03-11T19:19:39Z",
+                                       "completed_at":  "2026-03-11T19:19:39Z"
+                                   },
+                                   {
+                                       "name":  "Post Checkout",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  18,
+                                       "started_at":  "2026-03-11T19:19:39Z",
+                                       "completed_at":  "2026-03-11T19:19:40Z"
+                                   },
+                                   {
+                                       "name":  "Complete job",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  19,
+                                       "started_at":  "2026-03-11T19:19:40Z",
+                                       "completed_at":  "2026-03-11T19:19:40Z"
+                                   }
+                               ],
+                     "check_run_url":  "https://api.github.com/repos/IMEJE-TEAM/Denemeimeje/check-runs/66684759787",
+                     "labels":  [
+                                    "ubuntu-latest"
+                                ],
+                     "runner_id":  1000000013,
+                     "runner_name":  "GitHub Actions 1000000013",
+                     "runner_group_id":  0,
+                     "runner_group_name":  "GitHub Actions"
+                 }
+             ]
+}
