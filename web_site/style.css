@@ -209,100 +209,188 @@ nav {
   to   { transform: translate(-50%, -55%) rotate(360deg); }
 }
 
-/* ─── TEAM LOGO (Hero) ─── */
+/* ─── TEAM LOGO (Hero) — BÜYÜK İMEJE LOGO ─── */
 .team-logo-hero {
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 36px;
+  gap: 14px;
+  margin-bottom: 40px;
   opacity: 0;
   animation: fade-up 0.8s 0.1s forwards;
 }
 
-.team-logo-ring {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 2px solid var(--border);
-  padding: 4px;
-  background: radial-gradient(circle at 30% 30%, rgba(0,180,255,0.08), transparent 70%);
-  box-shadow:
-    0 0 30px rgba(0, 180, 255, 0.15),
-    0 0 60px rgba(255, 92, 0, 0.05),
-    inset 0 0 20px rgba(0, 180, 255, 0.05);
-  animation: logo-glow-pulse 3s ease-in-out infinite;
+/* Dış parlayan halkalar */
+.team-logo-badge {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes logo-glow-pulse {
-  0%, 100% { box-shadow: 0 0 30px rgba(0,180,255,0.15), 0 0 60px rgba(255,92,0,0.05); }
-  50%       { box-shadow: 0 0 50px rgba(0,180,255,0.3),  0 0 80px rgba(255,92,0,0.1); }
+.team-logo-glow-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 180, 255, 0.25);
+  animation: logo-ring-pulse 3s ease-in-out infinite;
 }
 
-.team-logo-inner {
-  width: 100%;
-  height: 100%;
+.team-logo-glow-ring.ring2 {
+  inset: -14px;
+  border-color: rgba(255, 92, 0, 0.15);
+  animation-delay: 1.5s;
+}
+
+@keyframes logo-ring-pulse {
+  0%, 100% { transform: scale(1);    opacity: 0.6; }
+  50%       { transform: scale(1.04); opacity: 1; }
+}
+
+/* Logo görsel kabı */
+.team-logo-img-wrap {
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
-  background: rgba(2, 8, 16, 0.9);
-  border: 1px solid rgba(0, 180, 255, 0.2);
+  background: rgba(5, 10, 20, 0.92);
+  border: 2px solid rgba(0, 180, 255, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  box-shadow:
+    0 0 40px rgba(0, 180, 255, 0.2),
+    0 0 80px rgba(255, 92, 0, 0.08),
+    inset 0 0 30px rgba(0, 0, 0, 0.6);
+  animation: logo-glow-pulse 3s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
 }
 
-/* Gerçek logo img için stil */
-.team-logo-inner img {
-  width: 88%;
-  height: 88%;
+@keyframes logo-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 40px rgba(0,180,255,0.2), 0 0 80px rgba(255,92,0,0.08);
+  }
+  50% {
+    box-shadow: 0 0 60px rgba(0,180,255,0.4), 0 0 100px rgba(255,92,0,0.15);
+  }
+}
+
+.team-logo-img-wrap img {
+  width: 90%;
+  height: 90%;
   object-fit: contain;
-
-  /*
-   * Beyaz arka planlı logo için:
-   * mix-blend-mode: screen → beyaz zemini şeffaf gibi gösterir
-   * Eğer logo koyu zeminliyse bu satırı kaldırın
-   */
   mix-blend-mode: screen;
-
-  /*
-   * Alternatif yöntem — logonun beyaz kısmını transparan yapar:
-   * Sadece logosu PNG/SVG ve arka planı beyaz olanlar için uygundur
-   */
   filter:
-    brightness(1.15)
-    contrast(1.1)
-    drop-shadow(0 0 8px rgba(0, 180, 255, 0.4));
+    brightness(1.2)
+    contrast(1.05)
+    drop-shadow(0 0 12px rgba(0, 180, 255, 0.35));
 }
 
-/* Placeholder görseli */
-.team-logo-placeholder {
+/* Takım adı altında büyük yazı */
+.team-logo-name {
+  font-family: var(--font-head);
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: 8px;
+  color: #fff;
+  text-shadow:
+    0 0 20px rgba(0, 180, 255, 0.6),
+    0 0 40px rgba(0, 180, 255, 0.3);
+  text-transform: uppercase;
+}
+
+.team-logo-sub {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 3px;
+  color: var(--accent);
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+/* ─── SİMÜLASYON BAŞLAT BUTONU ─── */
+.sim-start-row {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 14px;
+  margin-bottom: 32px;
 }
 
-.logo-icon { font-size: 1.8rem; }
-
-.logo-text {
+.btn-sim-start {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 48px;
+  background: linear-gradient(135deg, #0a1828, #0d2240);
+  border: 1.5px solid var(--accent);
+  border-radius: 3px;
   font-family: var(--font-head);
-  font-size: 0.45rem;
-  letter-spacing: 2px;
-  color: var(--dim);
-  text-align: center;
-  line-height: 1.4;
-}
-
-.team-logo-label {
-  font-family: var(--font-head);
-  font-size: 0.7rem;
+  font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 4px;
   color: var(--accent);
+  cursor: pointer;
   text-transform: uppercase;
-  text-shadow: 0 0 20px rgba(0, 180, 255, 0.5);
+  transition: all 0.35s;
+  box-shadow:
+    0 0 24px rgba(0, 180, 255, 0.2),
+    inset 0 0 20px rgba(0, 180, 255, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Tarama animasyonu */
+.btn-sim-start::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0,180,255,0.12), transparent);
+  transition: left 0.6s;
+}
+
+.btn-sim-start:hover::before { left: 160%; }
+
+.btn-sim-start:hover {
+  background: linear-gradient(135deg, #0d2240, #1a3a60);
+  border-color: #00d4ff;
+  color: #fff;
+  box-shadow:
+    0 0 40px rgba(0, 180, 255, 0.45),
+    0 0 80px rgba(0, 180, 255, 0.15),
+    inset 0 0 30px rgba(0, 180, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.btn-sim-start:active {
+  transform: translateY(0);
+  box-shadow: 0 0 20px rgba(0, 180, 255, 0.3);
+}
+
+.btn-sim-icon {
+  font-size: 1rem;
+  color: var(--fire);
+  filter: drop-shadow(0 0 6px var(--fire));
+  animation: play-pulse 2s infinite;
+}
+
+@keyframes play-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+.sim-start-hint {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--dim);
+  letter-spacing: 1.5px;
 }
 
 /* ─── Hero Text ─── */
@@ -732,7 +820,47 @@ section {
   border: none;
 }
 
-/* ─── Placeholder Earth Visual ─── */
+/* ─── Yüklenme Ekranı ─── */
+.sim-loading {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 8, 16, 0.97);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  z-index: 20;
+}
+
+.sim-loading-spinner {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 180, 255, 0.1);
+  border-top-color: var(--accent);
+  border-right-color: var(--fire);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.sim-loading-text {
+  font-family: var(--font-head);
+  font-size: 0.85rem;
+  letter-spacing: 4px;
+  color: var(--accent);
+  animation: blink 1.2s infinite;
+}
+
+.sim-loading-sub {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  color: var(--dim);
+}
 .sim-placeholder {
   width: 100%;
   height: 100%;

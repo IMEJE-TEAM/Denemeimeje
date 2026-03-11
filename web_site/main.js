@@ -264,8 +264,91 @@
 
 
 /* ══════════════════════════════════════
-   8. CONSOLE BRANDING
+   9. SİMÜLASYON BAŞLAT BUTONU
+   ─────────────────────────────────────
+   ★ SADECE BU SATIRI DEĞİŞTİR:
+     Unity build klasörünü GitHub'a hangi
+     isimle yüklediysen onu yaz.
+     Örnek: './simulasyon/index.html'
+              './UyduSim/index.html'
 ══════════════════════════════════════ */
+const UNITY_SIM_PATH = '../İmeje_Web_Simulasyon/index.html';
+/* ──────────────────────────────────── */
+
+(function initSimStartButton() {
+  const btn         = document.getElementById('simulasyonBaslatBtn');
+  const wrapper     = document.getElementById('simWrapper');
+  const simFrame    = document.getElementById('simFrame');
+  const placeholder = document.getElementById('simPlaceholder');
+  const loadingEl   = document.getElementById('simLoading');
+  const startRow    = document.querySelector('.sim-start-row');
+
+  if (!btn || !wrapper || !simFrame) return;
+
+  btn.addEventListener('click', function () {
+
+    // 1) Wrapper'ı göster
+    wrapper.style.display = 'block';
+    wrapper.style.opacity = '0';
+    wrapper.style.transition = 'opacity 0.5s';
+    setTimeout(() => { wrapper.style.opacity = '1'; }, 50);
+
+    // 2) Butonu ve hint'i gizle
+    if (startRow) {
+      startRow.style.opacity = '0';
+      startRow.style.transition = 'opacity 0.4s';
+      setTimeout(() => { startRow.style.display = 'none'; }, 400);
+    }
+
+    // 3) Yüklenme ekranını göster, placeholder'ı gizle
+    if (loadingEl)   loadingEl.style.display   = 'flex';
+    if (placeholder) placeholder.style.display = 'none';
+
+    // 4) Smooth scroll
+    setTimeout(() => {
+      wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 150);
+
+    // 5) iframe'i oluştur ve sim-frame'e ekle
+    const iframe = document.createElement('iframe');
+    iframe.src             = UNITY_SIM_PATH;
+    iframe.width           = '100%';
+    iframe.height          = '100%';
+    iframe.style.border    = 'none';
+    iframe.style.position  = 'absolute';
+    iframe.style.inset     = '0';
+    iframe.style.opacity   = '0';
+    iframe.style.transition = 'opacity 0.6s';
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('allow', 'autoplay; fullscreen');
+
+    // iframe yüklenince loading'i gizle, iframe'i göster
+    iframe.addEventListener('load', () => {
+      if (loadingEl) loadingEl.style.display = 'none';
+      iframe.style.opacity = '1';
+      console.log('[PyroSat] Unity WebGL yüklendi ✓');
+    });
+
+    // Yükleme hatası — placeholder'a geri dön
+    iframe.addEventListener('error', () => {
+      if (loadingEl)   loadingEl.style.display   = 'none';
+      if (placeholder) {
+        placeholder.style.display = 'flex';
+        const hintTitle = placeholder.querySelector('.unity-hint-title');
+        const hintDesc  = placeholder.querySelector('.unity-hint-desc');
+        if (hintTitle) hintTitle.textContent = '⚠️ YÜKLEME HATASI';
+        if (hintDesc)  hintDesc.innerHTML =
+          'Simülasyon dosyası bulunamadı.<br/>' +
+          '<code style="color:var(--fire)">' + UNITY_SIM_PATH + '</code><br/>' +
+          'Klasör yolunu main.js içinde güncelle.';
+      }
+      console.error('[PyroSat] Simülasyon yüklenemedi:', UNITY_SIM_PATH);
+    });
+
+    simFrame.appendChild(iframe);
+    console.log('[PyroSat] Simülasyon başlatıldı →', UNITY_SIM_PATH);
+  });
+})();
 console.log(
   '%c🛰️  PYROSAT',
   'color:#ff5c00;font-family:monospace;font-size:1.5rem;font-weight:bold;'
