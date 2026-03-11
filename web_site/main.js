@@ -272,7 +272,7 @@
      Örnek: './simulasyon/index.html'
               './UyduSim/index.html'
 ══════════════════════════════════════ */
-const UNITY_SIM_PATH = '../İmeje_Web_Simulasyon/index.html';
+const UNITY_SIM_PATH = '../Imeje_Web_Simulasyon/index.html';
 /* ──────────────────────────────────── */
 
 (function initSimStartButton() {

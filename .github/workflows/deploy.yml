@@ -30,10 +30,12 @@ jobs:
 
       - name: Decompress Unity WebGL Brotli files
         run: |
-          find . -name "*.br" -type f | while read f; do
-            echo "Decompressing: $f"
-            brotli --decompress "$f" --output "${f%.br}"
-          done
+          find . -type f -name "*.br" -exec sh -c '
+            for f do
+              echo "Decompressing: $f"
+              brotli -df "$f" -o "${f%.br}" && rm -f "$f"
+            done
+          ' sh {} +
 
       - name: Update Unity index.html (remove .br extensions)
         run: |
