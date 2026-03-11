@@ -1,0 +1,32 @@
+[build]
+  publish = "."
+
+# Kök URL'yi web sitesine yönlendir
+[[redirects]]
+  from = "/"
+  to = "/web_site/index.html"
+  status = 200
+
+# Unity WebGL - Brotli sıkıştırılmış dosyalar için doğru başlıklar
+[[headers]]
+  for = "/İmeje_Web_Simulasyon/Build/*.data.br"
+  [headers.values]
+    Content-Type = "application/octet-stream"
+    Content-Encoding = "br"
+
+[[headers]]
+  for = "/İmeje_Web_Simulasyon/Build/*.framework.js.br"
+  [headers.values]
+    Content-Type = "application/javascript"
+    Content-Encoding = "br"
+
+[[headers]]
+  for = "/İmeje_Web_Simulasyon/Build/*.wasm.br"
+  [headers.values]
+    Content-Type = "application/wasm"
+    Content-Encoding = "br"
+
+[[headers]]
+  for = "/İmeje_Web_Simulasyon/Build/*.loader.js"
+  [headers.values]
+    Content-Type = "application/javascript"
