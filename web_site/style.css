@@ -255,10 +255,25 @@ nav {
 
 /* Gerçek logo img için stil */
 .team-logo-inner img {
-  width: 75%;
-  height: 75%;
+  width: 88%;
+  height: 88%;
   object-fit: contain;
-  filter: brightness(1.1);
+
+  /*
+   * Beyaz arka planlı logo için:
+   * mix-blend-mode: screen → beyaz zemini şeffaf gibi gösterir
+   * Eğer logo koyu zeminliyse bu satırı kaldırın
+   */
+  mix-blend-mode: screen;
+
+  /*
+   * Alternatif yöntem — logonun beyaz kısmını transparan yapar:
+   * Sadece logosu PNG/SVG ve arka planı beyaz olanlar için uygundur
+   */
+  filter:
+    brightness(1.15)
+    contrast(1.1)
+    drop-shadow(0 0 8px rgba(0, 180, 255, 0.4));
 }
 
 /* Placeholder görseli */
